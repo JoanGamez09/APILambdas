@@ -8,15 +8,13 @@ from datetime import datetime
 from io import StringIO
  
 s3 = boto3.client('s3')
-target_bucket_name = "cinexideralposjoan-analisis"
+target_bucket_name = "targetbucket"
 today = datetime.today()
  
 def lambda_handler(event, context):
     try:      
         bucket_name = event['Records'][0]['s3']['bucket']['name']
         file_key = event['Records'][0]['s3']['object']['key']
-        # bucket_name = "cinexideralposjoan"
-        # file_key = "cinema-pos-1737648439.json"
  
         response = s3.get_object(Bucket=bucket_name, Key=file_key)
         
